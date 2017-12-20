@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<f:view>
+    <h:head>
+        <title>Parser</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <p:panelGrid columns="2">
+                <p:outputLabel value="Enter the url of Facebook profile"/>
+                <p:inputText value="#{parserBean.url}"/>
+            </p:panelGrid>
+            <p:commandButton value="Parse" action="#{parserBean.parseProfileByUrl}" update="panel"/>
+            <p:panelGrid id="panel" columns="2">
+                <f:facet name="header">
+                    <p:outputLabel value="Profile" />
+                </f:facet>
+
+                <p:outputLabel value="Name:" />
+                <p:outputLabel value="#{parserBean.profile.name}" />
+
+                <p:outputLabel value="Education:"/>
+                <ui:repeat value="#{parserBean.profile.educationList}" var="education" varStatus="educationStatus">
+                    <p:outputLabel value="#{educationStatus.index+1}) #{education.name}"/>
+                    <br/>
+                    <p:outputLabel value="#{education.info}"/>
+                    <br/>
+                </ui:repeat>
+
+                <p:outputLabel value="Work:"/>
+                <ui:repeat value="#{parserBean.profile.workList}" var="work" varStatus="workStatus">
+                    <p:outputLabel value="#{workStatus.index+1}) #{work.name}"/>
+                    <br/>
+                    <p:outputLabel value="#{work.info}"/>
+                    <br/>
+                </ui:repeat>
+            </p:panelGrid>
+        </h:form>
+    </h:body>
+</f:view>
+</html>

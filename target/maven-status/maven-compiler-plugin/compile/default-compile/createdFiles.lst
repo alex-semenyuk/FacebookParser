@@ -1,0 +1,6 @@
+parser\model\Profile.class
+parser\service\ParserService.class
+parser\LoginBean.class
+parser\model\Work.class
+parser\ParserBean.class
+parser\model\Education.class
